@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: temperatura
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: temperatura
+  template:
+    metadata:
+      labels:
+        app: temperatura
+    spec:
+      containers:
+      - name: site
+        image: diefaustino/conversao-temperatura:latest
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-temperatura
+spec:
+  selector:
+    app: temperatura
+  ports:
+    - port: 80
+      protocol: TCP
+      nodePort: 30000
+      targetPort: 8080
+  type: NodePort
