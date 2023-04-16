@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: site
-        image: diefaustino/conversao-temperatura:latest
+        image: diefaustino/conversao-temperatura:v1
         ports:
         - containerPort: 8080
 ---
